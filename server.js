@@ -375,6 +375,20 @@ app.post('/modified_favorite_videos', function(req, res) {
     res.render('ModifyFavoriteVideos');
 });
 
+/* GET login page, respond by  */
+app.post('/ave_video_view', function(req, res) {
+    sql = `CALL aveVideoView;`;
+    console.log(sql);
+    connection.query(sql, function(err, rows) {
+        if (err) {
+            rows.send(err);
+            return;
+        }
+        console.log(rows[0]);
+        res.render('ave_video_view',{"myarr": rows[0]});
+    });
+});
+
 //Testing add favorite v2
 app.post('/addfavorite', function(req, res) {
     var favoriteVideos= [];
